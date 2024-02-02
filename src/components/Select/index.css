@@ -1,0 +1,96 @@
+.custom-select {
+  position: relative;
+  width: fit-content;
+}
+
+.custom-select input {
+  padding: 10px 16px 10px 0;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.custom-select:focus-within fieldset legend {
+  max-width: auto;
+  display: block;
+  -webkit-transition: max-width 100ms cubic-bezier(0, 0, 0.2, 1) 50ms;
+  transition: max-width 100ms cubic-bezier(0, 0, 0.2, 1) 50ms;
+  white-space: nowrap;
+}
+
+.custom-select:focus-within input::placeholder {
+  display: none;
+}
+
+.custom-select:focus-within ul {
+  display: block;
+}
+
+.custom-select ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: -webkit-fill-available;
+  display: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  max-height: 300px;
+  overflow-y: scroll;
+  background-color: #242424;
+  z-index: 1;
+}
+
+.custom-select ul::-webkit-scrollbar {
+  display: none;
+}
+
+.custom-select ul li {
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  text-align: left;
+}
+
+.custom-select input:focus + ul {
+  display: block;
+}
+
+.custom-select ul li:hover {
+  background-color: #454040;
+}
+
+fieldset {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 16px 8px;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+legend {
+  color: #413f3f;
+  display: none;
+  float: unset;
+  width: auto;
+  overflow: hidden;
+  padding: 0;
+  height: 16px;
+  font-size: 0.75em;
+  -webkit-transition: max-width 50ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  transition: max-width 50ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  white-space: nowrap;
+}
+
+.custom-select fieldset legend {
+  position: relative;
+  text-align: left;
+  transform: translateY(-3px);
+  overflow: hidden;
+}
