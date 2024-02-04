@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { getSelectContext } from "@/contexts/Select";
+import { useEffect, useMemo, useState } from "react";
 import { Options } from "..";
 
 const OptionContainer = (props: {
   options: Options | (() => Promise<Options>);
 }) => {
   const [selectOptions, setSelectOptions] = useState<Options>([]);
+
+  const selectContext = getSelectContext();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,10 +31,16 @@ const OptionContainer = (props: {
     fetchData();
   }, [props.options]);
 
+  const filteredOptions = useMemo(() => {
+    return selectOptions.filter((option) =>
+      option.label.includes(selectContext.value.inputValue)
+    );
+  }, [selectContext.value.inputValue, selectOptions]);
+
   return (
     <>
       <ul>
-        {selectOptions.map((option, index) => (
+        {filteredOptions.map((option, index) => (
           <li key={index}>{option.label}</li>
         ))}
       </ul>
