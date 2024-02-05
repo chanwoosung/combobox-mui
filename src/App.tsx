@@ -9,8 +9,13 @@ function App() {
       <Select
         options={fetchTop100Films}
         placeholder="lorem inpsum 어쩌구 저쩌구"
+        id="select-1"
       />
-      <Select options={top100Films} placeholder="lorem inpsum 어쩌구 저쩌구" />
+      <Select
+        options={top100Films}
+        placeholder="lorem inpsum 어쩌구 저쩌구"
+        id="select-2"
+      />
     </>
   );
 }

@@ -32,8 +32,6 @@
   padding: 0;
   margin: 0;
   position: absolute;
-  top: 100%;
-  left: 0;
   width: -webkit-fill-available;
   display: none;
   border: 1px solid #ccc;
@@ -57,12 +55,19 @@
   text-align: left;
 }
 
-.custom-select input:focus + ul {
+/* .custom-select input:focus + ul {
   display: block;
+} */
+
+.custom-select ul li:hover,
+.custom-select ul li:focus,
+.custom-select ul li:focus-within,
+.custom-select ul li:focus-visible {
+  background-color: #454040;
 }
 
-.custom-select ul li:hover {
-  background-color: #454040;
+.custom-select ul li.isFocused {
+  background-color: #6d6161;
 }
 
 fieldset {
