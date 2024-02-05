@@ -9,6 +9,8 @@
   border: none;
   outline: none;
   background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .custom-select:focus-within fieldset legend {
@@ -39,6 +41,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   max-height: 300px;
+  box-sizing: border-box;
   overflow-y: scroll;
   background-color: #242424;
   z-index: 1;
@@ -68,6 +71,14 @@
 
 .custom-select ul li.isFocused {
   background-color: #6d6161;
+}
+
+.custom-select ul.down {
+  inset: auto 0 0 0;
+}
+
+.custom-select ul.top {
+  inset: 0 0 auto 0;
 }
 
 fieldset {

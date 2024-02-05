@@ -1,5 +1,5 @@
 import { SelectProvider } from "@/contexts/Select";
-import { useRef, useState } from "react";
+import { CSSProperties, useRef, useState } from "react";
 import { DropDown } from "./DropDown";
 import { SelectInput } from "./Input";
 import "./index.css";
@@ -10,9 +10,9 @@ export type Options = Array<Option>;
 type SelectProps = {
   value?: string | null;
   options: Options | (() => Promise<Options>);
-  onChange?: (value: string) => void;
   placeholder?: string;
   id: string;
+  style?: CSSProperties;
 };
 
 export interface ISelectContext {
@@ -74,12 +74,26 @@ const Select = (props: SelectProps) => {
     });
   };
 
+  const scrollToIndex = (index) => {
+    const ulElement = optionRef.current;
+    const liElements = ulElement.getElementsByTagName("li");
+
+    if (index >= 0 && index < liElements.length) {
+      const liElement = liElements[index];
+      const scrollContainer = ulElement.parentElement;
+      scrollContainer.scrollTop = liElement.offsetTop;
+    }
+  };
+
   const selectOption = (newIndex: number | null) => {
     focusOption(newIndex);
     setSelectContext({
       ...selectContext,
       optionIndex: newIndex,
     });
+    if (newIndex !== null) {
+      scrollToIndex(newIndex);
+    }
   };
 
   const keyDownHandler = (event) => {
@@ -110,7 +124,12 @@ const Select = (props: SelectProps) => {
   return (
     <>
       <SelectProvider value={store}>
-        <div id={props.id} className="custom-select" onKeyDown={keyDownHandler}>
+        <div
+          id={props.id}
+          style={props.style}
+          className="custom-select"
+          onKeyDown={keyDownHandler}
+        >
           <fieldset>
             <legend>{props.placeholder}</legend>
             <SelectInput placeholder={props.placeholder} id={props.id} />
