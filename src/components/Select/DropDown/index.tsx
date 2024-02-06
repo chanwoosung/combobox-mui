@@ -77,7 +77,7 @@ const DropDown = forwardRef(
           dropdown.classList.add("top");
           dropdown.classList.remove("down");
           dropdown.style.transform = `translate(0, -${
-            2 * field.clientHeight
+            ref.current.offsetHeight + field.clientHeight
           }px)`;
         } else {
           dropdown.classList.add("down");
