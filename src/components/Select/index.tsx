@@ -1,30 +1,9 @@
 import { SelectProvider } from "@/contexts/Select";
-import { CSSProperties, useRef, useState } from "react";
+import { ISelectContext, ISelectStore, SelectProps } from "@/types/select";
+import { useRef, useState } from "react";
 import { DropDown } from "./DropDown";
 import { SelectInput } from "./Input";
 import "./index.css";
-
-export type Option = { value: string; label: string };
-export type Options = Array<Option>;
-
-type SelectProps = {
-  value?: string | null;
-  options: Options | (() => Promise<Options>);
-  placeholder?: string;
-  id: string;
-  style?: CSSProperties;
-};
-
-export interface ISelectContext {
-  inputValue?: string;
-  selectedOption?: Option | null;
-  optionIndex?: number | null;
-}
-
-export interface ISelectStore {
-  value: ISelectContext;
-  setValue: React.Dispatch<React.SetStateAction<ISelectContext>>;
-}
 
 const defaultSelectContextValue: ISelectContext = {
   inputValue: "",
@@ -127,7 +106,9 @@ const Select = (props: SelectProps) => {
         <div
           id={props.id}
           style={props.style}
-          className="custom-select"
+          className={`custom-select ${
+            selectContext.isFocused ? "on-focus" : ""
+          }`}
           onKeyDown={keyDownHandler}
         >
           <fieldset>

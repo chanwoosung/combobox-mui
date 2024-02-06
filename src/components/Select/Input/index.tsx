@@ -22,6 +22,7 @@ const SelectInput = ({ id, placeholder }: ISelectInput) => {
       selectContext.setValue({
         inputValue: "",
         selectedOption: null,
+        isFocused: false,
         optionIndex: null,
       });
     } else {
@@ -29,12 +30,14 @@ const SelectInput = ({ id, placeholder }: ISelectInput) => {
         selectContext.setValue({
           inputValue: "",
           selectedOption: null,
+          isFocused: false,
           optionIndex: null,
         });
         return;
       }
       selectContext.setValue({
         ...selectContext.value,
+        isFocused: false,
         inputValue: selectContext.value.selectedOption.label,
       });
     }
@@ -43,6 +46,7 @@ const SelectInput = ({ id, placeholder }: ISelectInput) => {
   const handleFocus = () => {
     selectContext.setValue({
       ...selectContext.value,
+      isFocused: true,
     });
   };
 

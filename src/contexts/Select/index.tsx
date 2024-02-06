@@ -1,4 +1,4 @@
-import { ISelectStore } from "@/components/Select";
+import { ISelectStore } from "@/types/select";
 import { setCustomContext } from "@/utils/setCustomContext";
 
 export const [SelectProvider, getSelectContext] =

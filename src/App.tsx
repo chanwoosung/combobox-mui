@@ -9,6 +9,10 @@ function App() {
         options={fetchTop100Films}
         placeholder="lorem inpsum 어쩌구 저쩌구"
         id="select-1"
+        style={{
+          maxWidth: "300px",
+          width: "300px",
+        }}
       />
       {/* <Select
         options={top100Films}

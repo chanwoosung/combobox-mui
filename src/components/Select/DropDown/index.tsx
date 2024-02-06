@@ -1,6 +1,6 @@
 import { getSelectContext } from "@/contexts/Select";
+import { Option, Options } from "@/types/select";
 import { forwardRef, useEffect, useMemo, useState } from "react";
-import { Option, Options } from "..";
 
 const DropDown = forwardRef(
   (
@@ -13,10 +13,7 @@ const DropDown = forwardRef(
     const [selectOptions, setSelectOptions] = useState<Options>([]);
 
     const selectContext = getSelectContext();
-    const dropdown = useMemo(
-      () => document.getElementById(`${props.id}-dropdown`),
-      [props.id]
-    );
+
     const field = document.querySelector(`#${props.id} fieldset`);
 
     const dropdownHeight = useMemo(() => {
@@ -38,6 +35,7 @@ const DropDown = forwardRef(
         inputValue: option.label,
         selectedOption: option,
         optionIndex: null,
+        isFocused: false,
       });
     };
 
@@ -78,11 +76,13 @@ const DropDown = forwardRef(
         if (dropdown.classList.contains("down")) {
           dropdown.classList.add("top");
           dropdown.classList.remove("down");
-          dropdown.style.transform = `translate(0, -${field.clientHeight}px)`;
+          dropdown.style.transform = `translate(0, -${
+            2 * field.clientHeight
+          }px)`;
         } else {
           dropdown.classList.add("down");
           dropdown.classList.remove("top");
-          dropdown.style.transform = `translate(0, ${field.clientHeight}px)`;
+          dropdown.style.transform = "";
         }
       };
 
@@ -91,7 +91,7 @@ const DropDown = forwardRef(
           reverse();
         }
       });
-    }, [props.id, field]);
+    }, [props.id]);
 
     return (
       <>
@@ -99,8 +99,8 @@ const DropDown = forwardRef(
           ref={ref}
           id={`${props.id}-dropdown`}
           style={{
-            height: field ? `${dropdownHeight}px` : "auto",
-            transform: field ? `translate(0, ${field.clientHeight}px)` : "",
+            maxHeight: field ? `${dropdownHeight}px` : "auto",
+            // transform: field ? `translate(0, ${2 * field.offsetHeight}px)` : "",
           }}
           className="down"
         >
