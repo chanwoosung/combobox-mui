@@ -22,22 +22,22 @@ const Select = (props: SelectProps) => {
     setValue: setSelectContext,
   };
 
+  const scrollToIndex = (index: number | null) => {
+    const ulElement = optionRef.current;
+    const liElements = ulElement.getElementsByTagName("li");
+    if (index !== null && index >= 0 && index < liElements.length) {
+      const liElement = liElements[index];
+      ulElement.scrollTop = liElement.offsetTop - ulElement.offsetTop;
+    }
+  };
+
   const focusOption = (index: number | null) => {
     const liElements = optionRef.current.getElementsByTagName("li");
-    if (index >= 0) {
-      if (liElements.length < index) return;
-      if (liElements[index]) {
-        for (let c of liElements) c.classList.remove("isFocused");
-        liElements[index].classList.add("isFocused");
-        liElements[index].scrollIntoView();
-      }
-    } else {
-      if (liElements[liElements.length + index]) {
-        for (let c of liElements) c.classList.remove("isFocused");
-        liElements[index].classList.add("isFocused");
-        liElements[index].scrollIntoView();
-      }
+    if (liElements[index]) {
+      for (let c of liElements) c.classList.remove("isFocused");
+      liElements[index].classList.add("isFocused");
     }
+    scrollToIndex(index);
   };
 
   const submitOption = () => {
@@ -53,26 +53,12 @@ const Select = (props: SelectProps) => {
     });
   };
 
-  const scrollToIndex = (index) => {
-    const ulElement = optionRef.current;
-    const liElements = ulElement.getElementsByTagName("li");
-
-    if (index >= 0 && index < liElements.length) {
-      const liElement = liElements[index];
-      const scrollContainer = ulElement.parentElement;
-      scrollContainer.scrollTop = liElement.offsetTop;
-    }
-  };
-
   const selectOption = (newIndex: number | null) => {
-    focusOption(newIndex);
     setSelectContext({
       ...selectContext,
       optionIndex: newIndex,
     });
-    if (newIndex !== null) {
-      scrollToIndex(newIndex);
-    }
+    focusOption(newIndex);
   };
 
   const keyDownHandler = (event) => {
