@@ -1,4 +1,4 @@
-import top100Films from "@/mocks/top100Films.json";
+import top100Films from "../mocks/top100Films.json";
 
 type Data = Array<{ value: string; label: string }>;
 

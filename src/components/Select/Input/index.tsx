@@ -1,4 +1,4 @@
-import { getSelectContext } from "@/contexts/Select";
+import { getSelectContext } from "../../../contexts/Select";
 
 interface ISelectInput {
   id: string;

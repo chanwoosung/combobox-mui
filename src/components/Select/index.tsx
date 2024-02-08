@@ -1,6 +1,6 @@
-import { SelectProvider } from "@/contexts/Select";
-import { ISelectContext, ISelectStore, SelectProps } from "@/types/select";
 import { useRef, useState } from "react";
+import { SelectProvider } from "../../contexts/Select";
+import { ISelectContext, ISelectStore, SelectProps } from "../../types/select";
 import { DropDown } from "./DropDown";
 import { SelectInput } from "./Input";
 import "./index.css";

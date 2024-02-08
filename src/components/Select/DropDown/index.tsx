@@ -1,6 +1,6 @@
-import { getSelectContext } from "@/contexts/Select";
-import { Option, Options } from "@/types/select";
 import { forwardRef, useEffect, useMemo, useState } from "react";
+import { getSelectContext } from "../../../contexts/Select";
+import { Option, Options } from "../../../types/select";
 
 const DropDown = forwardRef(
   (

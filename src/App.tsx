@@ -1,6 +1,6 @@
-import { Select } from "@/components/Select";
-import { fetchTop100Films } from "@/services/fetchTop100Films";
 import "./App.css";
+import { Select } from "./components/Select";
+import { fetchTop100Films } from "./services/fetchTop100Films";
 
 function App() {
   return (
